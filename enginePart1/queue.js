@@ -15,9 +15,9 @@ const jobOptions = {
   lockDuration: 10000, // 10 seconds
 };
 
-// Enqueue a job
+// ? 1. Enqueue a job
 const addJob = async (data) => {
-	for(let i = 0; i < 10; i++){
+	for(let i = 0; i < 2000; i++){
 	  myQueue.add({ a: `${data}-${i}` }, jobOptions);
 	  // console.log every time when a new job is added
 	  console.log("job added", i)
@@ -25,7 +25,7 @@ const addJob = async (data) => {
 }
   
 
-  //? 2. process the job
+//? 2. process the job
 const processJob = async (job, done) => {
   try{
     setTimeout(async () => {
@@ -35,7 +35,7 @@ const processJob = async (job, done) => {
     
     done()
     
-    }, 2000)
+    }, 0)
   }catch(e){
     console.log(err);
     // const errorMessage = err?.message || err?.Error || err.toString(); // Capture the error message

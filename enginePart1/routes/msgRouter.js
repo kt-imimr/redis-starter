@@ -2,7 +2,7 @@ const express = require("express")
 
 const router = express.Router()
 
-const {sendMsg} = require("../msgController.js")
+const {sendMsg} = require("../controllers/msgController.js")
 
 router.post("/", sendMsg)
 

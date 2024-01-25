@@ -1,5 +1,5 @@
 
-const {myQueue, addJob, processJob} = require("./queue.js")
+const {myQueue, addJob, processJob} = require("../queue.js")
 
 //? 2. process the job
 myQueue.process(processJob)
@@ -22,12 +22,8 @@ exports.sendMsg = async function (req, res, next){
 		const {data} = req?.body
 		console.log("🚀 ~ file: msgController.js:5 ~ data:", data)
 		
-
-		//? 1. let's do the assignment, 
+		//? 1. redis-addJob
 		await addJob(data).catch(console.error)  
-
-
-		
 
 		res.status(200).json({status:"success"})
 	}catch(e){
