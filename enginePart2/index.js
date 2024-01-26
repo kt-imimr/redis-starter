@@ -1,5 +1,6 @@
 const express = require("express")
 const dotenv = require('dotenv')
+const {redisSubscriber} = require("./redisService")
 
 const PORT = 3001
 const app = express()
@@ -13,7 +14,8 @@ dotenv.config();
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: false }));
 
-app.user
+app.use(redisSubscriber)
+
 
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`)

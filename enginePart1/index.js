@@ -1,9 +1,18 @@
 const express = require("express")
 const dotenv = require('dotenv')
+const { createClient } = require("redis")
 
 // route
 const msgRouter = require("./routes/msgRouter.js") 
 const queueStatusRouter = require("./routes/queueStatusRouter.js")
+
+
+const publisher = createClient()
+	.on('error', (err) => {
+		console.log('Redis Client Error', err);
+	})
+	.connect()
+
 
 const PORT = 3000
 const app = express()
@@ -20,3 +29,9 @@ app.use("/queueStatus", queueStatusRouter)
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`)
 })
+
+
+process.on('beforeExit', (code) => {
+  console.log('Process beforeExit event with code: ', code);
+  publisher.disconnect()
+});

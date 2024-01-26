@@ -28,7 +28,7 @@ class User {
         this.username = username
         return this.queue
     }
-    
+
 
 
     getQueue(username){
@@ -39,7 +39,6 @@ class User {
         return this.username
     }
 
-    
 }
 
 const user = new User()
