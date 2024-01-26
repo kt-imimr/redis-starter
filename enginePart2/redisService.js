@@ -42,13 +42,12 @@ const Bull = require('bull');
     await subscriber.connect();
   
     await subscriber.subscribe('to_be_executed', (message) => {
-      console.log(message); // 'message'
+      console.log(typeof message); // 'message'
     });
   
     console.log("enginePart2: redisService starts");
 
-
-  })();
+})();
 
 // exports.redisSubscriber = async(req, res) => {
 
